@@ -19,22 +19,37 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		
 	</head>
-	<body ng-app="flapperNews" ng-controller="MainCtrl">
-		<div ng-repeat="post in posts | orderBy:'-upvotes'">
-		<span ng-click="incrementUpvotes(post)"><i class="fa fa-thumbs-o-up"></i></span>
-		<a ng-show="post.link" href="{{post.link}}">
-		{{post.title}}
-		</a>
-		<span ng-hide="post.link">
-		{{post.title}}	
-		</span>
-			 - upvotes: {{post.upvotes}}
+		<body ng-app="flapperNews" ng-controller="MainCtrl">
+
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="page-header">
+					<h3>My Angular App</h3>
+				</div>
+
+				<div ng-repeat="post in posts | orderBy:'-upvotes'">
+					<span ng-click="incrementUpvotes(post)"><i class="fa fa-thumbs-o-up"></i></span>
+					<a ng-show="post.link" href="{{post.link}}">
+					{{post.title}}
+					</a>
+					<span ng-hide="post.link">
+					{{post.title}}	
+					</span>
+						 - upvotes: {{post.upvotes}}
+				</div>
+				<form ng-submit="addPost();" style="margin-top: 30px;">
+
+					<h3>Add a new post!</h3>
+					<div ng-class="form-group">			
+						<input type="text" class="form-control" placeholder="title" ng-model="title">
+					</div>
+					<div ng-class="form-group">
+						<input type="text" class="form-control" placeholder="Link" ng-model="link">
+							<br>
+						<button class="btn btn-primary" type="submit">Post</button>
+					</div>
+				</form>
+			</div>
 		</div>
-		<form ng-submit="addPost();">
-			<input type="text" class="form-control" placeholder="title" ng-model="title">	<br>
-			<input type="text" class="form-control" placeholder="Link" ng-model="link">
-				<br>
-			<button class="btn btn-primary" type="submit">Post</button>
-		</form>
 	</body>
 </html>
